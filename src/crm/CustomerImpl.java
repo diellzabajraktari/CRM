@@ -62,7 +62,7 @@ public class CustomerImpl implements TelecomService<Customer> {
             statement.setInt(1, id);
             try(ResultSet resultSet = statement.executeQuery()) {
                 int customerId = resultSet.getInt("ID");
-                CustomerType customerType = resultSet.getDate("CreatedDate")
+                CustomerType customerType = resultSet.getDate("CreatedDate");
             }
         } catch(SQLException e) {
             e.printStackTrace();
