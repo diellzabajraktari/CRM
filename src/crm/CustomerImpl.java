@@ -61,7 +61,8 @@ public class CustomerImpl implements TelecomService<Customer> {
         try(PreparedStatement statement = connection.prepareStatement("SELECT * FROM CUSTOMER WHERE ID = ?")) {
             statement.setInt(1, id);
             try(ResultSet resultSet = statement.executeQuery()) {
-                return null;
+                int customerId = resultSet.getInt("ID");
+                CustomerType customerType = resultSet.getDate("CreatedDate")
             }
         } catch(SQLException e) {
             e.printStackTrace();
