@@ -1,7 +1,20 @@
 package crm;
 
 public enum IdType {
-    CUCustomer,
-    COContract,
-    SUSubscription
+    CU("Customer"),
+    CO("Contract"),
+    SU("Subscription");
+
+    private final String description;
+
+    IdType(String description) {
+        this.description = description;
+    }
+
+    @Override
+    public String toString()
+    {
+        return description;
+    }
+
 }
