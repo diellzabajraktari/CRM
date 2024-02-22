@@ -5,18 +5,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomerImpl implements TelecomService<Customer> {
-    private static final String JDBC_URL = "jdbc:mysql://localhost:3306/crm";
-    private static final String USER = "root";
-    private static final String PASSWORD = "";
-    private Connection connection;
-    public CustomerImpl() {
-        try {
-            this.connection = DriverManager.getConnection(JDBC_URL, USER, PASSWORD);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+public class CustomerImpl extends TelecomServiceImpl<Customer>{
+
 
     @Override
     public void create(Customer customer) {
