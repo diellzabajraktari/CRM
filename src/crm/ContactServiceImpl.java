@@ -78,7 +78,7 @@ public class ContactServiceImpl implements TelecomService<Contact>{
     private void createIndividualContact(Individual individual) {
         try (PreparedStatement statement = connection.prepareStatement(INSERT_CONTACT_SQL)) {
             statement.setInt(1, individual.getId());
-            statement.setString(2, IdType.CUCustomer.toString());
+            statement.setString(2, IdType.CU.toString());
             statement.setString(3, individual.getName());
             statement.setString(4, individual.getLastName());
             statement.setNull(5, Types.VARCHAR); // Business contacts don't have a customer name
@@ -135,7 +135,7 @@ public class ContactServiceImpl implements TelecomService<Contact>{
         // Implement the creation logic for Business contact
         try (PreparedStatement statement = connection.prepareStatement(INSERT_CONTACT_SQL)) {
             statement.setInt(1, business.getId());
-            statement.setString(2, IdType.CUCustomer.toString());
+            statement.setString(2, IdType.CU.toString());
             statement.setNull(3, Types.VARCHAR); // Individual contacts don't have a name
             statement.setNull(4, Types.VARCHAR); // Individual contacts don't have a last name
             statement.setString(5, business.getCustomerName());
@@ -191,8 +191,8 @@ public class ContactServiceImpl implements TelecomService<Contact>{
         ContactServiceImpl c = new ContactServiceImpl();
         LocalDate dob = LocalDate.of(2000, 4, 3);
         LocalDate createdDate = LocalDate.of(2022, 3, 3);
-        Individual individualContact = new Individual(1, IdType.CUCustomer, createdDate, State.ACTIVE, "John", "Doe", Gender.M, dob);
-        Business businessContact = new Business(2, IdType.CUCustomer, createdDate, State.ACTIVE, "ABC GROUP");
+        Individual individualContact = new Individual(1, IdType.CU, createdDate, State.ACTIVE, "John", "Doe", Gender.M, dob);
+        Business businessContact = new Business(2, IdType.CU, createdDate, State.ACTIVE, "ABC GROUP");
 
         // Use appropriate methods to create/update/delete based on the type
         c.create(individualContact);

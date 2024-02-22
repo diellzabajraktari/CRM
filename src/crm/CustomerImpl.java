@@ -2,6 +2,7 @@ package crm;
 
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerImpl implements TelecomService<Customer> {
@@ -61,12 +62,14 @@ public class CustomerImpl implements TelecomService<Customer> {
         try(PreparedStatement statement = connection.prepareStatement("SELECT * FROM CUSTOMER WHERE ID = ?")) {
             statement.setInt(1, id);
             try(ResultSet resultSet = statement.executeQuery()) {
-                int customerId = resultSet.getInt("ID");
-                CustomerType customerType = CustomerType.valueOf(resultSet.getString("CustomerType"));
-                LocalDate createdDate = resultSet.getDate("CreatedDate").toLocalDate();
-                State state = State.valueOf(resultSet.getString("State"));
-                int contactId = resultSet.getInt("ContactId");
-                return new Customer(customerId, customerType, Date.valueOf(createdDate), state, contactId);
+                while(resultSet.next()) {
+                    int customerId = resultSet.getInt("ID");
+                    CustomerType customerType = CustomerType.valueOf(resultSet.getString("CustomerType"));
+                    LocalDate createdDate = resultSet.getDate("CreatedDate").toLocalDate();
+                    State state = State.valueOf(resultSet.getString("State"));
+                    int contactId = resultSet.getInt("ContactId");
+                    return new Customer(customerId, customerType, Date.valueOf(createdDate), state, contactId);
+                }
             }
         } catch(SQLException e) {
             e.printStackTrace();
@@ -76,6 +79,22 @@ public class CustomerImpl implements TelecomService<Customer> {
 
     @Override
     public List<Customer> findAll() {
+        List<Customer> customers = new ArrayList<>();
+        try(PreparedStatement statement = connection.prepareStatement("SELECT * FROM CUSTOMER")) {
+            try(ResultSet resultSet = statement.executeQuery()) {
+                while(resultSet.next()) {
+                    int customerId = resultSet.getInt("ID");
+                    CustomerType customerType = CustomerType.valueOf(resultSet.getString("CustomerType"));
+                    LocalDate createdDate = resultSet.getDate("CreatedDate").toLocalDate();
+                    State state = State.valueOf(resultSet.getString("State"));
+                    int contactId = resultSet.getInt("ContactId");
+                    customers.add(new Customer(customerId, customerType, Date.valueOf(createdDate), state, contactId));
+                }
+                return customers;
+            }
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
@@ -83,10 +102,16 @@ public class CustomerImpl implements TelecomService<Customer> {
         CustomerImpl c = new CustomerImpl();
         LocalDate currentDate = LocalDate.now();
         Date sqlCurrentDate = Date.valueOf(currentDate);
-       // Customer customer1 = new Customer(1, CustomerType.INDIVIDUAL, sqlCurrentDate, State.ACTIVE, 1);
-      //  c.create(customer1);
-//        Customer customer2 = new Customer(2, CustomerType.BUSINESS, sqlCurrentDate, State.INACTIVE, 1);
-//        c.update(customer2, 1);
-        c.delete(2);
+      // Customer customer1 = new Customer(1, CustomerType.INDIVIDUAL, sqlCurrentDate, State.ACTIVE, 1);
+       // c.create(customer1);
+        Customer customer2 = new Customer(2, CustomerType.BUSINESS, sqlCurrentDate, State.INACTIVE, 1);
+       // c.update(customer2, 1);
+     //   c.delete(2);
+       // c.create(customer2);
+
+        List<Customer> customers = c.findAll();
+        for(Customer customer: customers) {
+            System.out.println(customer.getId() + " " + customer.getCustomerType() + " " + customer.getContactId() + " " + customer.getCreatedDate());
+        }
     }
 }

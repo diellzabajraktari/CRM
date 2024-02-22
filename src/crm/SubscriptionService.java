@@ -11,7 +11,7 @@ public class SubscriptionService implements TelecomService<Subscription>{
     }
 
     @Override
-    public void update(Subscription entity) {
+    public void update(Subscription entity, int ID) {
 
     }
 
