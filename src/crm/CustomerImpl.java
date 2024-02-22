@@ -24,13 +24,12 @@ public class CustomerImpl extends TelecomServiceImpl<Customer>{
 
     @Override
     public void update(Customer customer, int ID) {
-        try(PreparedStatement statement = connection.prepareStatement("UPDATE Customer SET ID=?, CustomerType = ?, CreatedDate = ?, State = ?, ContactId=? WHERE ID =?")) {
-            statement.setInt(1, customer.getId());
-            statement.setString(2, customer.getCustomerType().toString());
-            statement.setDate(3, customer.getCreatedDate());
-            statement.setString(4, customer.getState().toString());
-            statement.setInt(5, customer.getContactId());
-            statement.setInt(6, ID);
+        try(PreparedStatement statement = connection.prepareStatement("UPDATE Customer SET CustomerType = ?, CreatedDate = ?, State = ?, ContactId=? WHERE ID =?")) {
+            statement.setString(1, customer.getCustomerType().toString());
+            statement.setDate(2, customer.getCreatedDate());
+            statement.setString(3, customer.getState().toString());
+            statement.setInt(4, customer.getContactId());
+            statement.setInt(5, ID);
             statement.executeUpdate();
         } catch(SQLException e) {
             e.printStackTrace();
@@ -99,6 +98,8 @@ public class CustomerImpl extends TelecomServiceImpl<Customer>{
      //   c.delete(2);
        // c.create(customer2);
 
+
+        c.update(customer2, 1);
         List<Customer> customers = c.findAll();
         for(Customer customer: customers) {
             System.out.println(customer.getId() + " " + customer.getCustomerType() + " " + customer.getContactId() + " " + customer.getCreatedDate());
