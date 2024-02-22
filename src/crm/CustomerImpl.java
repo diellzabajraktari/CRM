@@ -62,12 +62,16 @@ public class CustomerImpl implements TelecomService<Customer> {
             statement.setInt(1, id);
             try(ResultSet resultSet = statement.executeQuery()) {
                 int customerId = resultSet.getInt("ID");
-                CustomerType customerType = resultSet.getDate("CreatedDate");
-
+                CustomerType customerType = CustomerType.valueOf(resultSet.getString("CustomerType"));
+                LocalDate createdDate = resultSet.getDate("CreatedDate").toLocalDate();
+                State state = State.valueOf(resultSet.getString("State"));
+                int contactId = resultSet.getInt("ContactId");
+                return new Customer(customerId, customerType, Date.valueOf(createdDate), state, contactId);
             }
         } catch(SQLException e) {
             e.printStackTrace();
         }
+        return null;
     }
 
     @Override
