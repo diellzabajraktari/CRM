@@ -29,6 +29,10 @@ public class Product {
         }
     }
 
+    public List<ServiceType> getServiceTypes() {
+        return serviceTypes;
+    }
+
     public boolean isAvailable() {
         LocalDateTime currentDate = LocalDateTime.now();
         return currentDate.isAfter(fromDateTime) && currentDate.isBefore(toDateTime);
