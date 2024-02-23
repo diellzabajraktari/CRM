@@ -58,4 +58,18 @@ public class FilterImplementations{
         }
         return products;
     }
+
+    public void getSubscribersForProduct(Product product) {
+        List<Subscription> purchasedSubscribers = product.getPurchasedSubscribers();
+        for(Subscription subscriber: purchasedSubscribers) {
+            System.out.print("Subscriber ID: " + subscriber.getId() + " ;");
+            System.out.print("Subscriber Phone Number: " + subscriber.getPhoneNumber() + ";") ;
+            System.out.println("List of services: ");
+            List<ServiceType> services = product.getServiceTypes();
+            int i = 0;
+            for(ServiceType service: services) {
+                System.out.printf("%d. %s",++i, service.getServiceType());
+            }
+        }
+    }
 }

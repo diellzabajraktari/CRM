@@ -12,6 +12,7 @@ public class Product {
     private final LocalDateTime fromDateTime;
     private final LocalDateTime toDateTime;
     private final List<ServiceType> serviceTypes;
+    private final List<Subscription> purchasedSubscribers;
 
     public Product(String name, double price, LocalDateTime fromDateTime, LocalDateTime toDateTime) {
         this.name = name;
@@ -19,6 +20,7 @@ public class Product {
         this.fromDateTime = fromDateTime;
         this.toDateTime = toDateTime;
         this.serviceTypes = new ArrayList<>();
+        this.purchasedSubscribers = new ArrayList<>();
         serviceTypes.add(new SimCard());
         serviceTypes.add(new Voice());
     }
@@ -54,11 +56,14 @@ public class Product {
 
     public void purchase(Subscription subscriber) {
         if (isAvailable() && isSubscriberAllowed(subscriber)) {
-            // Perform the purchase logic here
+            purchasedSubscribers.add(subscriber);
             System.out.println("Product purchased successfully!");
         } else {
             System.out.println("Product not available or subscriber not allowed to use all ServiceTypes.");
         }
     }
 
+    public List<Subscription> getPurchasedSubscribers() {
+        return purchasedSubscribers;
+    }
 }
