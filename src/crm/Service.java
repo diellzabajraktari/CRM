@@ -3,10 +3,10 @@ package crm;
 import java.time.LocalDate;
 
 public class Service {
-    private int id; //unique
-    private ServiceType serviceType;
-    private LocalDate createdDate;
-    private State state;
+    private final int id; //unique
+    private final ServiceType serviceType;
+    private final LocalDate createdDate;
+    private final State state;
 
     public Service(int id, ServiceType serviceType, LocalDate createdDate, State state) {
         this.id = id;
@@ -17,5 +17,9 @@ public class Service {
 
     public int getId() {
         return id;
+    }
+
+    public ServiceType getServiceType() {
+        return serviceType;
     }
 }

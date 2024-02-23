@@ -11,9 +11,6 @@ public class Subscription {
     private State state;
 
     private int contactId;
-
-
-
     private Set<Service> services;
 
     public Subscription(int id, String phoneNumber, LocalDate createdDate, State state, int contactId) {
