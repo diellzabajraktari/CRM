@@ -28,13 +28,13 @@ public class SubscriptionImpl extends TelecomServiceImpl<Subscription> {
 
     @Override
     public void update(Subscription subscription, int ID) {
-        try(PreparedStatement statement = connection.prepareStatement("UPDATE Subscription SET PhoneNumber = ?, CreatedDate = ?, State = ?, ContactId=? WHERE ID =?")) {
+        try(PreparedStatement statement = connection.prepareStatement("UPDATE Subscription SET PhoneNumber = ?, CreatedDate = ?, State = ?, CID=? WHERE ID =?")) {
 
             statement.setString(1,subscription.getPhoneNumber());
             statement.setDate(2, Date.valueOf(subscription.getCreatedDate()));
-            statement.setString(4, subscription.getState().toString());
-            statement.setInt(5, subscription.getContactId());
-            statement.setInt(6, ID);
+            statement.setString(3, subscription.getState().toString());
+            statement.setInt(4, subscription.getContactId());
+            statement.setInt(5, ID);
             statement.executeUpdate();
         } catch(SQLException e) {
             e.printStackTrace();
@@ -61,7 +61,7 @@ public class SubscriptionImpl extends TelecomServiceImpl<Subscription> {
                     String phoneNumber = resultSet.getString("PhoneNumber");
                     LocalDate createdDate = resultSet.getDate("CreatedDate").toLocalDate();
                     State state = State.valueOf(resultSet.getString("State"));
-                    int contactId = resultSet.getInt("ContactId");
+                    int contactId = resultSet.getInt("CID");
                     return new Subscription(subscriptionId, phoneNumber, Date.valueOf(createdDate).toLocalDate(), state, contactId);
                 }
             }
@@ -137,11 +137,12 @@ public class SubscriptionImpl extends TelecomServiceImpl<Subscription> {
 //        return services;
 //    }
 
-    public static void main(String[] args){
+//    public static void main(String[] args){
 //        SubscriptionImpl smpl = new SubscriptionImpl();
-//        Date currentDate = Date.valueOf(LocalDate.now());
-//
-//        Subscription sub1 = new Subscription(123,"+38344123456",currentDate,State.ACTIVE,123);
-//        smpl.create(sub1);
-    }
+//       Date currentDate = Date.valueOf(LocalDate.now());
+////
+//        Subscription sub1 = new Subscription(123,"+38344123456", currentDate.toLocalDate(),State.ACTIVE,1005);
+//        Subscription sub2 = new Subscription(151,"+38344112436", currentDate.toLocalDate(),State.DEACTIVE,1005);
+//        smpl.update(sub2,123);
+//    }
 }
