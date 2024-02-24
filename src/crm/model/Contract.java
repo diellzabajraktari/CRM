@@ -10,11 +10,15 @@ public class Contract {
     private ContractType contractType;
     private final LocalDate createdDate;
     private State state;
-    public Contract(int id, ContractType contractType, LocalDate createdDate, State state) {
+    private final int CID;
+    private final int contactID;
+    public Contract(int id, ContractType contractType, LocalDate createdDate, State state, int CID, int contactID) {
         this.id = id;
         this.contractType = contractType;
         this.createdDate = createdDate;
         this.state = state;
+        this.CID = CID;
+        this.contactID = contactID;
     }
 
     public LocalDate getCreatedDate() {
@@ -35,5 +39,17 @@ public class Contract {
 
     public void setState(State state) {
         this.state = state;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public int getCID() {
+        return CID;
+    }
+
+    public int getContactID() {
+        return contactID;
     }
 }

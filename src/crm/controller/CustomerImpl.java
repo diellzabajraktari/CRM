@@ -98,13 +98,13 @@ public class CustomerImpl extends TelecomServiceImpl<Customer> {
         Date sqlCurrentDate = Date.valueOf(currentDate);
       // Customer customer1 = new Customer(1, CustomerType.INDIVIDUAL, sqlCurrentDate, State.ACTIVE, 1);
        // c.create(customer1);
-        Customer customer2 = new Customer(2, CustomerType.BUSINESS, sqlCurrentDate, State.INACTIVE, 1);
+        Customer customer2 = new Customer(2, CustomerType.BUSINESS, sqlCurrentDate, State.INACTIVE, 2);
        // c.update(customer2, 1);
      //   c.delete(2);
        // c.create(customer2);
 
 
-        c.update(customer2, 1);
+        c.create(customer2);
 //        List<Customer> customers = c.findAll();
 //        for(Customer customer: customers) {
 //            System.out.println(customer.getId() + " " + customer.getCustomerType() + " " + customer.getContactId() + " " + customer.getCreatedDate());
