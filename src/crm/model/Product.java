@@ -47,7 +47,7 @@ public class Product {
     public boolean isSubscriberAllowed(Subscription subscriber) {
         Set<Service> subscriberServices = subscriber.getServices();
 
-        for (ServiceType includedServiceType : serviceTypes) {
+        for (ServiceType serviceType : serviceTypes) {
             boolean serviceTypePresent = subscriberServices.stream()
                     .anyMatch(service -> service.getServiceType().equals(serviceTypes));
 

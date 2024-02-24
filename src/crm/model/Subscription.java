@@ -12,7 +12,6 @@ public class Subscription {
     private String phoneNumber;
     private LocalDate CreatedDate;
     private State state;
-
     private int contactId;
     private Set<Service> services;
 
