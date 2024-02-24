@@ -3,6 +3,7 @@ package crm.model;
 import crm.enums.State;
 import crm.model.Service;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
@@ -10,12 +11,12 @@ import java.util.Set;
 public class Subscription {
     private int id; //unique
     private String phoneNumber;
-    private LocalDate CreatedDate;
+    private Date CreatedDate;
     private State state;
     private int contactId;
     private Set<Service> services;
 
-    public Subscription(int id, String phoneNumber, LocalDate createdDate, State state, int contactId) {
+    public Subscription(int id, String phoneNumber, Date createdDate, State state, int contactId) {
         this.id = id;
         this.phoneNumber = phoneNumber;
         CreatedDate = createdDate;
@@ -40,11 +41,11 @@ public class Subscription {
         this.phoneNumber = phoneNumber;
     }
 
-    public LocalDate getCreatedDate() {
+    public Date getCreatedDate() {
         return CreatedDate;
     }
 
-    public void setCreatedDate(LocalDate createdDate) {
+    public void setCreatedDate(Date createdDate) {
         CreatedDate = createdDate;
     }
 

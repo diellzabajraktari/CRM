@@ -17,7 +17,7 @@ public class SubscriptionImpl extends TelecomServiceImpl<Subscription> {
         try (PreparedStatement statement = connection.prepareStatement("INSERT INTO SUBSCRIPTION(ID, PhoneNumber, CreatedDate, State, CID) VALUES(?, ?, ?, ?, ?)")) {
             statement.setInt(1, subscription.getId());
             statement.setString(2, subscription.getPhoneNumber());
-            statement.setDate(3, java.sql.Date.valueOf(subscription.getCreatedDate()));
+            statement.setDate(3, subscription.getCreatedDate());
             statement.setString(4, subscription.getState().toString());
             statement.setInt(5, subscription.getContactId());
             statement.executeUpdate();
@@ -31,7 +31,7 @@ public class SubscriptionImpl extends TelecomServiceImpl<Subscription> {
         try(PreparedStatement statement = connection.prepareStatement("UPDATE Subscription SET PhoneNumber = ?, CreatedDate = ?, State = ?, CID=? WHERE ID =?")) {
 
             statement.setString(1,subscription.getPhoneNumber());
-            statement.setDate(2, Date.valueOf(subscription.getCreatedDate()));
+            statement.setDate(2, subscription.getCreatedDate());
             statement.setString(3, subscription.getState().toString());
             statement.setInt(4, subscription.getContactId());
             statement.setInt(5, ID);
@@ -59,10 +59,10 @@ public class SubscriptionImpl extends TelecomServiceImpl<Subscription> {
                 while(resultSet.next()) {
                     int subscriptionId = resultSet.getInt("ID");
                     String phoneNumber = resultSet.getString("PhoneNumber");
-                    LocalDate createdDate = resultSet.getDate("CreatedDate").toLocalDate();
+                    Date createdDate = resultSet.getDate("CreatedDate");
                     State state = State.valueOf(resultSet.getString("State"));
                     int contactId = resultSet.getInt("CID");
-                    return new Subscription(subscriptionId, phoneNumber, Date.valueOf(createdDate).toLocalDate(), state, contactId);
+                    return new Subscription(subscriptionId, phoneNumber, createdDate, state, contactId);
                 }
             }
         } catch(SQLException e) {
@@ -79,10 +79,10 @@ public class SubscriptionImpl extends TelecomServiceImpl<Subscription> {
                 while(resultSet.next()) {
                     int subscriptionId = resultSet.getInt("ID");
                     String phoneNumber = resultSet.getString("PhoneNumber");
-                    LocalDate createdDate = resultSet.getDate("CreatedDate").toLocalDate();
+                    Date createdDate = resultSet.getDate("CreatedDate");
                     State state = State.valueOf(resultSet.getString("State"));
                     int contactId = resultSet.getInt("CID");
-                    subscriptions.add(new Subscription(subscriptionId, phoneNumber, Date.valueOf(createdDate).toLocalDate(), state, contactId));
+                    subscriptions.add(new Subscription(subscriptionId, phoneNumber, createdDate, state, contactId));
                 }
                 return subscriptions;
             }

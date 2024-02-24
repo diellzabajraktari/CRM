@@ -9,10 +9,10 @@ import java.time.LocalDate;
 public class Customer {
     private final int id; //unique
     private final CustomerType customerType;
-    private final LocalDate createdDate;
+    private final Date createdDate;
     private State state;
     private final int contactId;
-    public Customer(int id, CustomerType customerType, LocalDate createdDate, State state, int contactId) {
+    public Customer(int id, CustomerType customerType, Date createdDate, State state, int contactId) {
         this.id = id;
         this.customerType = customerType;
         this.createdDate = createdDate;
@@ -28,7 +28,7 @@ public class Customer {
         return customerType;
     }
 
-    public LocalDate getCreatedDate() {
+    public Date getCreatedDate() {
         return createdDate;
     }
 
