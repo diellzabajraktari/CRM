@@ -70,4 +70,20 @@ public class Product {
     public List<Subscription> getPurchasedSubscribers() {
         return purchasedSubscribers;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public LocalDateTime getFromDateTime() {
+        return fromDateTime;
+    }
+
+    public LocalDateTime getToDateTime() {
+        return toDateTime;
+    }
 }

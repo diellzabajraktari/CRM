@@ -1,5 +1,6 @@
 package crm;
 
+import crm.enums.State;
 import crm.model.Product;
 import crm.model.Subscription;
 import crm.service.servicetype.ServiceType;
@@ -25,7 +26,7 @@ public class FilterImplementations{
     }
     public List<Product> getProductsCheaperThan5() {
         List<Product> products = new ArrayList<>();
-        try(PreparedStatement statement = connection.prepareStatement("SELECT * FROM PRODUCTS WHERE PRICE < 5")) {
+        try(PreparedStatement statement = connection.prepareStatement("SELECT * FROM Product WHERE PRICE < 5")) {
             try(ResultSet resultSet = statement.executeQuery()) {
                 while(resultSet.next()) {
                     String name = resultSet.getString("Name");
@@ -46,7 +47,7 @@ public class FilterImplementations{
         List<Product> products = new ArrayList<>();
         LocalDateTime currentDate = LocalDateTime.now();
         LocalDateTime expirationDate = currentDate.plusDays(x);
-        try(PreparedStatement statement = connection.prepareStatement("SELECT * FROM PRODUCTS WHERE toDateTime < ?")) {
+        try(PreparedStatement statement = connection.prepareStatement("SELECT * FROM PRODUCT WHERE toDateTime < ?")) {
             statement.setTimestamp(1, Timestamp.valueOf(expirationDate));
             try(ResultSet resultSet = statement.executeQuery()) {
                 while(resultSet.next()) {
@@ -75,6 +76,26 @@ public class FilterImplementations{
             for(ServiceType service: services) {
                 System.out.printf("%d. %s",++i, service.getServiceType());
             }
+        }
+    }
+
+    public static void main(String[] args) {
+        FilterImplementations f = new FilterImplementations();
+        List<Product> products = f.getProductsCheaperThan5();
+        printProduct(products);
+        List<Product> products1 = f.productsThatWillExpire(10);
+        printProduct(products1);
+
+        String dateString = "2024-02-24";
+        LocalDate localDate = LocalDate.parse(dateString);
+        Subscription subcriber = new Subscription('1', "+38344111333", localDate, State.ACTIVE, 1005);
+        products.get(0).purchase(subcriber);
+        f.getSubscribersForProduct(products.get(0));
+    }
+
+    static void printProduct(List<Product> products) {
+        for(Product product: products) {
+            System.out.println(product.getName() + " " + product.getPrice() + " " + product.getFromDateTime() + " " + product.getToDateTime());
         }
     }
 }
