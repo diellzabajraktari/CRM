@@ -8,6 +8,10 @@ import crm.model.Contact;
 import java.time.LocalDate;
 
 public class Individual extends Contact {
+    private int id;
+    private IdType idType;
+    private LocalDate createdDate;
+    private State state;
     private final String name;
     private final String lastName;
     private final Gender gender;
@@ -34,5 +38,37 @@ public class Individual extends Contact {
 
     public LocalDate getDOB() {
         return DOB;
+    }
+
+    @Override
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public IdType getIdType() {
+        return idType;
+    }
+
+    public void setIdType(IdType idType) {
+        this.idType = idType;
+    }
+
+    @Override
+    public LocalDate getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(LocalDate createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    @Override
+    public State getState() {
+        return state;
+    }
+
+    public void setState(State state) {
+        this.state = state;
     }
 }

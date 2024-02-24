@@ -5,6 +5,7 @@ import crm.model.Subscription;
 import crm.service.servicetype.ServiceType;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;

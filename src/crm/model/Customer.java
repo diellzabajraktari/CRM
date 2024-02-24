@@ -9,7 +9,7 @@ public class Customer {
     private final int id; //unique
     private final CustomerType customerType;
     private final Date createdDate;
-    private final State state;
+    private State state;
     private final int contactId;
     public Customer(int id, CustomerType customerType, Date createdDate, State state, int contactId) {
         this.id = id;
@@ -33,6 +33,9 @@ public class Customer {
 
     public State getState() {
         return state;
+    }
+    public void setState(State state) {
+        this.state = state;
     }
 
     public int getContactId() {

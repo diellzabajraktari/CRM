@@ -8,8 +8,8 @@ import java.time.LocalDate;
 public class Service {
     private final int id; //unique
     private final ServiceType serviceType;
-    private final LocalDate createdDate;
-    private final State state;
+    private LocalDate createdDate;
+    private State state;
 
     public Service(int id, ServiceType serviceType, LocalDate createdDate, State state) {
         this.id = id;
@@ -24,5 +24,21 @@ public class Service {
 
     public ServiceType getServiceType() {
         return serviceType;
+    }
+
+    public LocalDate getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(LocalDate createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public State getState() {
+        return state;
+    }
+
+    public void setState(State state) {
+        this.state = state;
     }
 }
