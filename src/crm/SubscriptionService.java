@@ -1,8 +1,11 @@
 package crm;
 
+import crm.model.Subscription;
+import crm.service.TelecomService;
+
 import java.util.List;
 
-public class SubscriptionService implements TelecomService<Subscription>{
+public class SubscriptionService implements TelecomService<Subscription> {
 
 
     @Override

@@ -1,4 +1,7 @@
-package crm;
+package crm.model;
+
+import crm.enums.State;
+import crm.model.Service;
 
 import java.time.LocalDate;
 import java.util.HashSet;

@@ -1,8 +1,11 @@
-package crm;
+package crm.controller;
+
+import crm.model.Contract;
+import crm.service.TelecomServiceImpl;
 
 import java.util.List;
 
-public class ContractImpl extends TelecomServiceImpl<Contract>{
+public class ContractImpl extends TelecomServiceImpl<Contract> {
     @Override
     public void create(Contract entity) {
 

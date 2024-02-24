@@ -1,11 +1,16 @@
-package crm;
+package crm.controller;
+
+import crm.model.Customer;
+import crm.enums.CustomerType;
+import crm.enums.State;
+import crm.service.TelecomServiceImpl;
 
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomerImpl extends TelecomServiceImpl<Customer>{
+public class CustomerImpl extends TelecomServiceImpl<Customer> {
 
 
     @Override
@@ -100,9 +105,9 @@ public class CustomerImpl extends TelecomServiceImpl<Customer>{
 
 
         c.update(customer2, 1);
-        List<Customer> customers = c.findAll();
-        for(Customer customer: customers) {
-            System.out.println(customer.getId() + " " + customer.getCustomerType() + " " + customer.getContactId() + " " + customer.getCreatedDate());
-        }
+//        List<Customer> customers = c.findAll();
+//        for(Customer customer: customers) {
+//            System.out.println(customer.getId() + " " + customer.getCustomerType() + " " + customer.getContactId() + " " + customer.getCreatedDate());
+//        }
     }
 }

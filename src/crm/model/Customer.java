@@ -1,14 +1,16 @@
-package crm;
+package crm.model;
 
-import java.time.LocalDate;
+import crm.enums.CustomerType;
+import crm.enums.State;
+
 import java.sql.Date;
 
 public class Customer {
-    private int id; //unique
-    private CustomerType customerType;
-    private Date createdDate;
-    private State state;
-    private int contactId;
+    private final int id; //unique
+    private final CustomerType customerType;
+    private final Date createdDate;
+    private final State state;
+    private final int contactId;
     public Customer(int id, CustomerType customerType, Date createdDate, State state, int contactId) {
         this.id = id;
         this.customerType = customerType;

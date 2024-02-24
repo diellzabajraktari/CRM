@@ -1,4 +1,7 @@
-package crm;
+package crm.model;
+
+import crm.enums.ContractType;
+import crm.enums.State;
 
 import java.time.LocalDate;
 

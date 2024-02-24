@@ -1,11 +1,13 @@
-package crm;
+package crm.controller;
+
+import crm.enums.State;
+import crm.model.Subscription;
+import crm.service.TelecomServiceImpl;
 
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class SubscriptionImpl extends TelecomServiceImpl<Subscription> {
 

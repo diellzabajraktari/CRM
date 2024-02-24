@@ -1,12 +1,19 @@
-package crm;
+package crm.controller;
+import crm.enums.Gender;
+import crm.enums.IdType;
+import crm.enums.State;
+import crm.model.Business;
+import crm.model.Contact;
+import crm.model.Individual;
+import crm.service.TelecomService;
+
 import java.sql.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ContactServiceImpl implements TelecomService<Contact>{
+public class ContactServiceImpl implements TelecomService<Contact> {
     private static final String JDBC_URL = "jdbc:mysql://localhost:3306/crm";
     private static final String USER = "root";
     private static final String PASSWORD = "";

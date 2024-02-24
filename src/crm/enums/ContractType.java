@@ -1,4 +1,4 @@
-package crm;
+package crm.enums;
 
 public enum ContractType {
     PREPAID,

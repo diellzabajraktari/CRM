@@ -1,5 +1,9 @@
 package crm;
 
+import crm.model.Product;
+import crm.model.Subscription;
+import crm.service.servicetype.ServiceType;
+
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;

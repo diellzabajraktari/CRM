@@ -1,4 +1,4 @@
-package crm;
+package crm.service.servicetype;
 
 public interface ServiceType {
 
